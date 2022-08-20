@@ -1,8 +1,9 @@
 <template>
     <div>
         <ul>
-            <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem" class="shadow">
-                {{ todoItem }}
+            <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item" class="shadow">
+                <font-awesome-icon v-bind:class="{checkBtnCompleted: todoItem.completed}" class="checkBtn" icon="fa-solid fa-check" size="xl" v-on:click="toggleComplete(todoItem)"/>
+                <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
                 <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
                     <font-awesome-icon icon="fa-solid fa-trash-can" />
                 </span>
@@ -26,7 +27,7 @@ export default {
     created() {
         if(localStorage.length > 0) {
             for (var i = 0; i < localStorage.length; ++i) {
-                this.todoItems.push(localStorage.key(i));
+                this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
             }
         }
     },
@@ -36,6 +37,11 @@ export default {
             console.log(todoItem, index);
             localStorage.removeItem(todoItem);
             this.todoItems.splice(index, 1);
+        },
+        toggleComplete: function(todoItem) {
+            todoItem.completed = !todoItem.completed;
+            localStorage.removeItem(todoItem.item);
+            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
         }
     },
 };
@@ -63,6 +69,8 @@ li {
     color: #de4343;
 }
 .checkBtn {
+    width: 35px;
+    height: 35px;
     line-height: 45px;
     color: #62acde;
     margin-right: 5px;
