@@ -7,7 +7,7 @@
         <AlertModal v-if="showModal" @close="showModal = false">
             <h3 slot="header">
                 경고!!
-                <font-awesome-icon class="closeModalBtn" icon="fa-solid fa-xmark" @click="showModal = false" />
+                <font-awesome-icon class="closeModalBtn" icon="fas fa-times" @click="showModal = false" />
             </h3>
             <div slot="body">
                 아무것도 입력하지 않으셨습니다.
