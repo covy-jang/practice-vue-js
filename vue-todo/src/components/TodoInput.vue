@@ -31,7 +31,6 @@ export default {
   components: {
     AlertModal: AlertModal,
   },
-  mounted() {},
   methods: {
     addTodo() {
       if (this.newTodoItem !== "") {
