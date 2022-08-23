@@ -4,24 +4,6 @@
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            
-        };
-    },
-
-    mounted() {
-        
-    },
-
-    methods: {
-        
-    },
-};
-</script>
-
 <style scoped>
 h1 {
     color: #2F3B52;
